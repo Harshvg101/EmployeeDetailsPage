@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Update Employee Details</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    <label for="role">Role:</label>
+    <input type="text" name="role" value="{{ employee.role }}"><br>
+
+    <label for="home_office">Home Office:</label>
+    <input type="text" name="home_office" value="{{ employee.home_office }}"><br>
+
+    <button type="submit">Save</button>
+</form>
+
+{% endblock content %}

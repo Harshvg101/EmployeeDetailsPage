@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Employee Management System</h2>
+
+<!-- Employee Info -->
+<table border="1">
+    <tr><td><strong>EnterpriseID</strong></td><td>{{ employee.id }}</td></tr>
+    <tr><td><strong>Employee Number</strong></td><td>{{ employee.employee_number }}</td></tr>
+    <tr><td><strong>Last Name</strong></td><td>{{ employee.last_name }}</td></tr>
+    <tr><td><strong>First Name</strong></td><td>{{ employee.first_name }}</td></tr>
+    <tr><td><strong>Talent Segment</strong></td><td>{{ employee.talent_segment }}</td></tr>
+    <tr><td><strong>Role</strong></td><td>{{ employee.role }}</td></tr>
+    <tr><td><strong>Management Level</strong></td><td>{{ employee.management_level }}</td></tr>
+    <tr><td><strong>Home Office</strong></td><td>{{ employee.home_office }}</td></tr>
+    <tr><td><strong>Mail Address</strong></td><td>{{ employee.mail }}</td></tr>
+    <tr><td><strong>Team</strong></td><td>{{ employee.team }}</td></tr>
+</table>
+
+{% if is_admin %}
+    <p><a href="{% url 'base:update_employee' employee.id %}" style="color: blue;">Update</a></p>
+{% endif %}
+
+<!-- Training History -->
+<h3>Training Attend History</h3>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Training Name</th>
+            <th>Training Attend Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for training in employee.training %}
+        <tr>
+            <td>{{ training.name }}</td>
+            <td>{{ training.date }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock content %}

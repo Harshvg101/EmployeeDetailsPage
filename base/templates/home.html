@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Employee Management System</h2>
+{% if request.user.is_staff %}
+    <p><a href="{% url 'base:add_employee' %}"> Add New Employee </a>
+    <a href="{% url 'logout' %}">Sign Out</a>
+</p>
+{% endif %}
+
+<!-- Search Bar -->
+<form method="GET">
+    <label for="enterpriseID">EnterpriseID:</label>
+    <input type="text" id="enterpriseID" name="q" value="{{ request.GET.q }}">
+    <button type="submit">Search</button>
+</form>
+
+<!-- Employee Table -->
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Last Name</th>
+            <th>First Name</th>
+            <th>Mail</th>
+            <th>Home Office</th>
+            <th>Role</th>
+            <th>Team</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for employee in employees %}
+        <tr>
+            <td><a href="{% url 'base:employee_detail' employee.id %}">{{ employee.id }}</a></td>
+            <td>{{ employee.last_name }}</td>
+            <td>{{ employee.first_name }}</td>
+            <td>{{ employee.mail }}</td>
+            <td>{{ employee.home_office }}</td>
+            <td>{{ employee.role }}</td>
+            <td>{{ employee.team }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock content %}
