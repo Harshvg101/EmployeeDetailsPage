@@ -83,7 +83,7 @@ class Background(models.Model):
         help_text="The date and time the employee retired."
     )
     experience = models.TextField(help_text="Employee experience details.")
-    # If you want the admin to let you enter the created_at manually, do NOT use auto_now_add.
+    # If we want the admin to let you enter the created_at manually, we will NOT use auto_now_add.
     created_at = models.DateTimeField(default=timezone.now, help_text="Record creation date.")
 
     def __str__(self):
@@ -105,55 +105,8 @@ class ProjectHistory(models.Model):
 
     class Meta:
         verbose_name = "T_project history"
-        verbose_name_plural = "T_project historys"
+        verbose_name_plural = "T_project histories"
 
-
-class TrainingHistory(models.Model):
-    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
-    training = models.ForeignKey(Training, on_delete=models.CASCADE)
-    attend_date = models.DateField()
-
-    def __str__(self):
-        return f"{self.employee} - {self.training}"
-
-    class Meta:
-        verbose_name = "T_training history"
-        verbose_name_plural = "T_training historys"
-
-
-class Background(models.Model):
-    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
-    company = models.CharField(max_length=50)
-    hire_date = models.DateTimeField()
-    retire_date = models.DateTimeField()
-    experience = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return f"{self.employee} - {self.company}"
-
-    class Meta:
-        verbose_name = "T_background"
-        verbose_name_plural = "T_backgrounds"
-
-
-
-class SkillHistory(models.Model):
-    employee = models.ForeignKey('Employee', on_delete=models.CASCADE)
-    skill = models.ForeignKey('Skill', on_delete=models.CASCADE)
-    # “Register Date” can be recorded as a DateTimeField.
-    register_date = models.DateTimeField(
-        help_text="The date and time when the employee registered for this skill."
-    )
-
-    created_at = models.DateTimeField(default=timezone.now, help_text="Record creation date.")
-
-    def __str__(self):
-        return f"{self.employee} - {self.skill}"
-
-    class Meta:
-        verbose_name = "T_skill history"
-        verbose_name_plural = "T_skill historys"
 
 class TrainingHistory(models.Model):
     employee = models.ForeignKey('Employee', on_delete=models.CASCADE)
@@ -170,7 +123,24 @@ class TrainingHistory(models.Model):
 
     class Meta:
         verbose_name = "T_training history"
-        verbose_name_plural = "T_training historys"
+        verbose_name_plural = "T_training histories"
+
+class SkillHistory(models.Model):
+    employee = models.ForeignKey('Employee', on_delete=models.CASCADE)
+    skill = models.ForeignKey('Skill', on_delete=models.CASCADE)
+    # “Register Date” can be recorded as a DateTimeField.
+    register_date = models.DateTimeField(
+        help_text="The date and time when the employee registered for this skill."
+    )
+
+    created_at = models.DateTimeField(default=timezone.now, help_text="Record creation date.")
+
+    def __str__(self):
+        return f"{self.employee} - {self.skill}"
+
+    class Meta:
+        verbose_name = "T_skill history"
+        verbose_name_plural = "T_skill historiess"
 
 
 # class Team(models.Model):
