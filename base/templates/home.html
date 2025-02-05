@@ -34,10 +34,10 @@
             <td><a href="{% url 'base:employee_detail' employee.id %}">{{ employee.id }}</a></td>
             <td>{{ employee.last_name }}</td>
             <td>{{ employee.first_name }}</td>
-            <td>{{ employee.mail }}</td>
+            <td>{{ employee.mail_address }}</td>
             <td>{{ employee.home_office }}</td>
             <td>{{ employee.role }}</td>
-            <td>{{ employee.team }}</td>
+            <td>{{ employee.teams }}</td>
         </tr>
         {% endfor %}
     </tbody>

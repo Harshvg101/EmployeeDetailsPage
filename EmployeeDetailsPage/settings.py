@@ -70,6 +70,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'EmployeeDetailsPage.wsgi.application'
 
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
@@ -125,5 +128,8 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = 'base:home'
-LOGOUT_REDIRECT_URL = 'base:login'
+# LOGIN_REDIRECT_URL = 'base:home'
+# LOGOUT_REDIRECT_URL = 'base:login'
+
+LOGIN_REDIRECT_URL = '/adv/admin/'
+LOGOUT_REDIRECT_URL = '/adv/admin/'
